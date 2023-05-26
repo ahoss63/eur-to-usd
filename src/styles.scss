@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+.home-container {
+  display: flex;
+  margin: 20px;
+  height: 100vh;
+  font-size: small;
+  & > .converter-container {
+    flex: 1;
+  }
+  & > .history-container {
+    flex: 3;
+  }
+}
+
+.switch-container {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+.converter-form {
+  background-color: rgb(232, 232, 231);
+  padding: 20px;
+}
+.taux-container {
+  margin-bottom: 5px;
+}
+
+h3, span {
+  color: rgb(188, 84, 9);
+}
+
+

@@ -1,0 +1,70 @@
+<div class="home-container">
+  <div class="converter-container">
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">EUR/USD Converter</h5>
+        <div class="taux-container">
+          <span>Taux Réeel(EUR/USD): {{ taux$ | async | number }}</span>
+        </div>
+        <div class="converter-form">
+          <form [formGroup]="form">
+            <div class="mb-3">
+              <label for="montant" class="form-label">Montant</label>
+              <input
+                type="text"
+                class="form-control"
+                id="montant"
+                formControlName="montant"
+                placeholder="Saisir un montant"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="tauxPersonalise" class="form-label"
+                >Taux personalisé</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="tauxPersonalise"
+                formControlName="tauxPersonalise"
+                placeholder="Saisir un taux"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Montant en</label>
+              <eur-usd-switch formControlName="switch"></eur-usd-switch>
+            </div>
+            <div class="mb-3" *ngIf="result$ | async as res">
+              <span>Resultat: {{ res.result | number }} {{ res.to }}</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="history-container">
+    <h3>Historique de conversion</h3>
+    <table class="table">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">Valeur initial</th>
+          <th scope="col">Taux Réel</th>
+          <th scope="col">Taux Saisi</th>
+          <th scope="col">Montant Calculé</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="history$ | async as resHistory; else noHistory">
+        <tr *ngFor="let item of resHistory">
+          <td>{{ item?.montant | number }} {{ item?.from }}</td>
+          <td>{{ item?.taux }}</td>
+          <td>{{ item?.taux }}</td>
+          <td>{{ item?.result | number }} {{ item?.to }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #noHistory>
+  <span>Pas d'historique</span>
+</ng-template>

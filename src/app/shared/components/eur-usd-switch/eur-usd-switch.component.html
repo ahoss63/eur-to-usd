@@ -1,0 +1,18 @@
+<div class="switch-container">
+  <button
+    type="button"
+    class="btn"
+    [ngClass]="switchValue === switches.EUR ? 'btn-success' : 'btn-light'"
+    (click)="switchToEuro()"
+  >
+    EUR
+  </button>
+  <button
+    type="button"
+    class="btn"
+    [ngClass]="switchValue === switches.USD ? 'btn-success' : 'btn-light'"
+    (click)="switchToDollar()"
+  >
+    USD
+  </button>
+</div>
